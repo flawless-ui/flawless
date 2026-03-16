@@ -78,6 +78,23 @@ dart run melos run analyze
 dart run melos run test
 ```
 
+## Contributing
+
+Thank you for considering contributing to the Flawless suite! But make sure to check the [CONTRIBUTING.md](CONTRIBUTING.md) file first.
+
+## Code of Conduct
+
+In order to ensure that the Flawless community is welcoming to all, please review and abide by the [Code of Conduct](https://www.contributor-covenant.org/version/3/0/code_of_conduct/). Any violations of the code of conduct may be reported to Flawless Team (flawless@codelabmw.dev):
+
+> - Participants will be tolerant of opposing views.
+> - Participants must ensure that their language and actions are free of personal attacks and disparaging personal remarks.
+> - When interpreting the words and actions of others, participants should always assume good intentions.
+> - Behavior that can be reasonably considered harassment will not be tolerated.
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Flawless, please send an e-mail to Flawless Team via [flawless@codelabmw.dev](mailto:flawless@codelabmw.dev). All security vulnerabilities will be promptly addressed.
+
 ## License
 
-Open-sourced software licensed under the MIT license.
+Open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
