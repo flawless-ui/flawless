@@ -1,0 +1,31 @@
+name: tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true # Speeds up subsequent runs
+
+      - uses: bluefireteam/melos-action@v3
+        # melos-action runs 'melos bootstrap' automatically
+
+      - name: Verify Formatting
+        run: dart run melos run format:verify
+
+      - name: Analyze
+        run: dart run melos run analyze
+
+      - name: Run Tests
+        run: dart run melos run test
