@@ -1,3 +1,7 @@
+## 0.1.0-alpha.2
+
+ - **FIX**: add cli executables and bump to alpha.2.
+
 ## 0.1.0-alpha.3
 
  - **FIX**: add cli executables and bump to alpha.2.

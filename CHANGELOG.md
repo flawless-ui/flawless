@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`flawless_cli` - `v0.1.0-alpha.2`](#flawless_cli---v010-alpha2)
+
+---
+
+#### `flawless_cli` - `v0.1.0-alpha.2`
+
+ - **FIX**: add cli executables and bump to alpha.2.
+
+
+## 2026-03-17
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`flawless_cli` - `v0.1.0-alpha.3`](#flawless_cli---v010-alpha3)
 
 ---
