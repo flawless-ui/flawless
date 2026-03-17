@@ -12,7 +12,7 @@ The official CLI for the Flawless theming and component system for Flutter. Scaf
 
 ## Usage
 
-Install globally (after publishing):
+Install globally:
 
 ```sh
 dart pub global activate flawless_cli
