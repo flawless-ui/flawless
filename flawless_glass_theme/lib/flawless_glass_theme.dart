@@ -6,6 +6,10 @@ import 'glass_design_system.dart';
 
 export 'glass_design_system.dart';
 
+/// Builds a Flutter [ThemeData] using a Flawless glass design system.
+///
+/// The [designSystem] provides Flawless color, typography, spacing, and motion
+/// tokens which are mapped into Flutter's Material theme primitives.
 ThemeData createGlassTheme({
   required GlassDesignSystem designSystem,
   Brightness brightness = Brightness.dark,

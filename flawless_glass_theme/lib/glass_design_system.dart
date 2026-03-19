@@ -1,5 +1,6 @@
 import 'package:flawless_core/flawless_core.dart';
 
+/// Glass (glassmorphism) color tokens for Flawless.
 class GlassColorScheme implements FlawlessColorScheme {
   @override
   String get primary => '#0B0F1A';
@@ -23,6 +24,7 @@ class GlassColorScheme implements FlawlessColorScheme {
   String get onError => '#FFFFFF';
 }
 
+/// Glass typography tokens for Flawless.
 class GlassTypography implements FlawlessTypography {
   @override
   FlawlessTextStyle get displayLarge =>
@@ -53,6 +55,7 @@ class GlassTypography implements FlawlessTypography {
       GlassTextStyle(fontSize: 12, fontWeight: 'normal');
 }
 
+/// A concrete implementation of [FlawlessTextStyle] for the glass design system.
 class GlassTextStyle implements FlawlessTextStyle {
   @override
   final String fontFamily;
@@ -74,6 +77,7 @@ class GlassTextStyle implements FlawlessTextStyle {
   });
 }
 
+/// Default component properties for glass buttons.
 class GlassButtonComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -95,6 +99,7 @@ class GlassButtonComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Default component properties for glass cards.
 class GlassCardComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -114,6 +119,7 @@ class GlassCardComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Default component properties for glass bottom navigation.
 class GlassBottomNavComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -134,6 +140,10 @@ class GlassBottomNavComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Glass (glassmorphism) design system implementation for Flawless.
+///
+/// This provides defaults for color, typography, spacing, motion, and component
+/// properties.
 class GlassDesignSystem implements FlawlessDesignSystem {
   @override
   FlawlessColorScheme get colorScheme => GlassColorScheme();
