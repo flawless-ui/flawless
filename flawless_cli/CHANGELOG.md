@@ -1,3 +1,7 @@
+## 0.1.0-alpha.4
+
+ - **DOCS**(flawless_cli): improve docs and add example.
+
 ## 0.1.0-alpha.3
 
  - **DOCS**: clean up CLI readme and remove internal notes.

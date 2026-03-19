@@ -1,6 +1,6 @@
 name: flawless_cli
 description: Command-line tools for bootstrapping and managing Flawless UI in Flutter projects.
-version: 0.1.0-alpha.3
+version: 0.1.0-alpha.4
 homepage: https://flawless.codelabmw.dev
 repository: https://github.com/flawless-ui/flawless
 issue_tracker: https://github.com/flawless-ui/flawless/issues

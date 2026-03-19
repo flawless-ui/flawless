@@ -1,3 +1,7 @@
+## 0.1.0-alpha.2
+
+ - **DOCS**(flawless_material3_theme): improve design system docs.
+
 ## 0.1.0-alpha.1
 
 - Alpha release.
