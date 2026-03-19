@@ -4,6 +4,7 @@ import 'package:flawless_cli/src/commands/add_command.dart';
 import 'package:flawless_cli/src/commands/list_command.dart';
 import 'package:flawless_cli/src/commands/docs_command.dart';
 import 'package:flawless_cli/src/commands/auth_command.dart';
+import 'package:flawless_cli/src/version/suite_version.dart';
 import 'package:flawless_cli/src/utils/console.dart';
 
 Future<void> main(List<String> arguments) async {
@@ -30,6 +31,12 @@ Future<void> main(List<String> arguments) async {
       negatable: false,
       help: 'Show usage information.',
     )
+    ..addFlag(
+      'version',
+      abbr: 'v',
+      negatable: false,
+      help: 'Print the current Flawless suite version.',
+    )
     ..addCommand('init', initParser)
     ..addCommand('add')
     ..addCommand('list')
@@ -41,6 +48,7 @@ Future<void> main(List<String> arguments) async {
   Future<void> printWelcome() async {
     Console.header('Welcome to Flawless');
     Console.dim('Opinionated architecture. Unopinionated styling.');
+    Console.info('Version: $flawlessSuiteVersion');
     Console.info('');
     Console.header('Quick start');
     Console.command(r'$ flawless_cli init --with-sample --wire-main');
@@ -61,6 +69,11 @@ Future<void> main(List<String> arguments) async {
     Console.info('');
     Console.dim(
         'Tip: run "flawless_cli --help" to see flags for each command.');
+  }
+
+  if (result['version'] == true) {
+    Console.info(flawlessSuiteVersion);
+    return;
   }
 
   if (result['help'] == true || result.command == null) {
