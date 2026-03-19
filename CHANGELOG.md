@@ -15,6 +15,27 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`flawless_cli` - `v0.1.0-alpha.5`](#flawless_cli---v010-alpha5)
+
+---
+
+#### `flawless_cli` - `v0.1.0-alpha.5`
+
+ - **FEAT**(cli): add --version flag and sync logic.
+
+
+## 2026-03-20
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`flawless_cli` - `v0.1.0-alpha.4`](#flawless_cli---v010-alpha4)
  - [`flawless_glass_theme` - `v0.1.0-alpha.2`](#flawless_glass_theme---v010-alpha2)
  - [`flawless_material3_theme` - `v0.1.0-alpha.2`](#flawless_material3_theme---v010-alpha2)
