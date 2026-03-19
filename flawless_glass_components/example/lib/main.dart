@@ -12,7 +12,8 @@ class GlassComponentsExampleApp extends StatefulWidget {
   const GlassComponentsExampleApp({super.key});
 
   @override
-  State<GlassComponentsExampleApp> createState() => _GlassComponentsExampleAppState();
+  State<GlassComponentsExampleApp> createState() =>
+      _GlassComponentsExampleAppState();
 }
 
 class _GlassComponentsExampleAppState extends State<GlassComponentsExampleApp> {
@@ -35,7 +36,8 @@ class _GlassComponentsExampleAppState extends State<GlassComponentsExampleApp> {
                 children: [
                   FlawlessGlassCard(
                     header: const Text('Card Header'),
-                    child: const Text('FlawlessGlassCard renders the glass style.'),
+                    child: const Text(
+                        'FlawlessGlassCard renders the glass style.'),
                   ),
                   const SizedBox(height: 16),
                   FlawlessGlassButton(

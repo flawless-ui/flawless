@@ -17,7 +17,8 @@ class GlassThemeExampleApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: const Text('Glass Theme Example')),
         body: const Center(
-          child: Text('createGlassTheme() produces a ThemeData for Flutter apps.'),
+          child:
+              Text('createGlassTheme() produces a ThemeData for Flutter apps.'),
         ),
       ),
     );

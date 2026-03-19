@@ -21,7 +21,8 @@ class _FlawlessUiExampleAppState extends State<FlawlessUiExampleApp> {
 
   @override
   Widget build(BuildContext context) {
-    final designSystem = _useGlass ? GlassDesignSystem() : Material3DesignSystem();
+    final designSystem =
+        _useGlass ? GlassDesignSystem() : Material3DesignSystem();
 
     return MaterialApp(
       theme: createMaterial3Theme(designSystem: Material3DesignSystem()),
@@ -50,7 +51,8 @@ class _FlawlessUiExampleAppState extends State<FlawlessUiExampleApp> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const FlawlessCard(
-                    child: Text('FlawlessCard adapts to the active design system.'),
+                    child: Text(
+                        'FlawlessCard adapts to the active design system.'),
                   ),
                   const SizedBox(height: 16),
                   FlawlessButton(

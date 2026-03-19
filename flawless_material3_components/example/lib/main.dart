@@ -11,10 +11,12 @@ class Material3ComponentsExampleApp extends StatefulWidget {
   const Material3ComponentsExampleApp({super.key});
 
   @override
-  State<Material3ComponentsExampleApp> createState() => _Material3ComponentsExampleAppState();
+  State<Material3ComponentsExampleApp> createState() =>
+      _Material3ComponentsExampleAppState();
 }
 
-class _Material3ComponentsExampleAppState extends State<Material3ComponentsExampleApp> {
+class _Material3ComponentsExampleAppState
+    extends State<Material3ComponentsExampleApp> {
   int _index = 0;
 
   @override
@@ -33,7 +35,8 @@ class _Material3ComponentsExampleAppState extends State<Material3ComponentsExamp
               children: [
                 FlawlessMaterial3Card(
                   header: const Text('Card Header'),
-                  child: const Text('FlawlessMaterial3Card uses Material 3 styling.'),
+                  child: const Text(
+                      'FlawlessMaterial3Card uses Material 3 styling.'),
                 ),
                 const SizedBox(height: 16),
                 FlawlessMaterial3Button(
