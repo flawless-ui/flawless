@@ -1,8 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
-const String flawlessDefaultDashboardUrl = 'https://flawless.codelabmw.dev';
+/// Default Flawless dashboard base URL used by the CLI.
+///
+/// You can override this value per-project using [FlawlessCliConfig.dashboardUrl]
+/// or per-process using the `FLAWLESS_DASHBOARD_URL` environment variable.
+const String flawlessDefaultDashboardUrl = 'https://dashboard.flawless-ui.dev';
 
+/// Resolves the dashboard base URL for the current CLI invocation.
+///
+/// Precedence:
+/// 1) `FLAWLESS_DASHBOARD_URL` environment variable
+/// 2) [FlawlessCliConfig.dashboardUrl]
+/// 3) [flawlessDefaultDashboardUrl]
 String resolveDashboardBaseUrl({FlawlessCliConfig? config}) {
   final cfg = config;
   return Platform.environment['FLAWLESS_DASHBOARD_URL'] ??
@@ -14,11 +24,16 @@ String resolveDashboardBaseUrl({FlawlessCliConfig? config}) {
 ///
 /// Stored as a small JSON file in the current working directory.
 class FlawlessCliConfig {
+  /// API token used to authenticate CLI requests.
   final String? apiToken;
+
+  /// Base URL for the Flawless dashboard.
   final String? dashboardUrl;
 
+  /// Creates a CLI configuration value.
   const FlawlessCliConfig({this.apiToken, this.dashboardUrl});
 
+  /// Returns a copy of this config with the provided values replaced.
   FlawlessCliConfig copyWith({String? apiToken, String? dashboardUrl}) {
     return FlawlessCliConfig(
       apiToken: apiToken ?? this.apiToken,

@@ -1,0 +1,10 @@
+name: flawless_cli_example
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flawless_cli:
+    path: ..
+
