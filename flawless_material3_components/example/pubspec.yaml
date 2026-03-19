@@ -1,0 +1,24 @@
+name: flawless_material3_components_example
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flawless_material3_components:
+    path: ..
+  flawless_core:
+    path: ../../flawless_core
+  flawless_material3_theme:
+    path: ../../flawless_material3_theme
+
+dependency_overrides:
+  flawless_core:
+    path: ../../flawless_core
+  flawless_material3_theme:
+    path: ../../flawless_material3_theme
+
+flutter:
+  uses-material-design: true
