@@ -7,6 +7,10 @@ import 'material3_design_system.dart';
 
 export 'material3_design_system.dart';
 
+/// Builds a Flutter [ThemeData] using a Flawless Material 3 design system.
+///
+/// The [designSystem] provides Flawless color, typography, spacing, and motion
+/// tokens which are mapped into Flutter's Material 3 theme primitives.
 ThemeData createMaterial3Theme({
   required Material3DesignSystem designSystem,
   Brightness brightness = Brightness.light,

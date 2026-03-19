@@ -24,6 +24,7 @@ class Material3ColorScheme implements FlawlessColorScheme {
   String get onError => '#FFFFFF';
 }
 
+/// Material 3 typography tokens for Flawless.
 class Material3Typography implements FlawlessTypography {
   @override
   FlawlessTextStyle get displayLarge =>
@@ -54,6 +55,7 @@ class Material3Typography implements FlawlessTypography {
       Material3TextStyle(fontSize: 12, fontWeight: 'normal');
 }
 
+/// A concrete implementation of [FlawlessTextStyle] for the Material 3 design system.
 class Material3TextStyle implements FlawlessTextStyle {
   @override
   final String fontFamily;
@@ -75,6 +77,7 @@ class Material3TextStyle implements FlawlessTextStyle {
   });
 }
 
+/// Default Material 3 component property values.
 class Material3ComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -83,6 +86,7 @@ class Material3ComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Component properties for the Material 3 button implementation.
 class Material3ButtonComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -100,6 +104,7 @@ class Material3ButtonComponentProperties
       };
 }
 
+/// Component properties for the Material 3 card implementation.
 class Material3CardComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -121,6 +126,7 @@ class Material3CardComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Component properties for the Material 3 checkbox implementation.
 class Material3CheckboxComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -134,6 +140,7 @@ class Material3CheckboxComponentProperties
       };
 }
 
+/// Component properties for the Material 3 dropdown implementation.
 class Material3DropdownComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -148,6 +155,7 @@ class Material3DropdownComponentProperties
       };
 }
 
+/// Component properties for the Material 3 text field implementation.
 class Material3TextFieldComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -166,6 +174,7 @@ class Material3TextFieldComponentProperties
       };
 }
 
+/// Component properties for the Material 3 text area implementation.
 class Material3TextAreaComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -183,6 +192,7 @@ class Material3TextAreaComponentProperties
       };
 }
 
+/// Component properties for the Material 3 progress indicator implementation.
 class Material3ProgressComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -194,6 +204,7 @@ class Material3ProgressComponentProperties
       };
 }
 
+/// Component properties for the Material 3 tabs implementation.
 class Material3TabsComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -207,6 +218,7 @@ class Material3TabsComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Component properties for the Material 3 navigation bar implementation.
 class Material3NavbarComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -231,6 +243,7 @@ class Material3NavbarComponentProperties
       };
 }
 
+/// Component properties for the Material 3 bottom navigation implementation.
 class Material3BottomNavComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -247,6 +260,7 @@ class Material3BottomNavComponentProperties
       };
 }
 
+/// Component properties for the Material 3 divider implementation.
 class Material3DividerComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -257,6 +271,7 @@ class Material3DividerComponentProperties
       };
 }
 
+/// Component properties for the Material 3 list item implementation.
 class Material3ListItemComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -266,6 +281,7 @@ class Material3ListItemComponentProperties
       };
 }
 
+/// Component properties for the Material 3 switch implementation.
 class Material3SwitchComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -278,6 +294,7 @@ class Material3SwitchComponentProperties
       };
 }
 
+/// Component properties for the Material 3 radio implementation.
 class Material3RadioComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -288,6 +305,7 @@ class Material3RadioComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Component properties for the Material 3 modal implementation.
 class Material3ModalComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -300,6 +318,7 @@ class Material3ModalComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Component properties for the Material 3 snackbar implementation.
 class Material3SnackbarComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -310,6 +329,7 @@ class Material3SnackbarComponentProperties
       };
 }
 
+/// Component properties for the Material 3 alert implementation.
 class Material3AlertComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -326,6 +346,7 @@ class Material3AlertComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Component properties for the Material 3 avatar implementation.
 class Material3AvatarComponentProperties
     implements FlawlessComponentProperties {
   @override
@@ -347,6 +368,7 @@ class Material3AvatarComponentProperties
       };
 }
 
+/// Component properties for the Material 3 badge implementation.
 class Material3BadgeComponentProperties implements FlawlessComponentProperties {
   @override
   Map<String, dynamic> get properties => {
@@ -371,6 +393,10 @@ class Material3BadgeComponentProperties implements FlawlessComponentProperties {
       };
 }
 
+/// Material 3 design system implementation for Flawless.
+///
+/// This provides defaults for color, typography, spacing, motion, and component
+/// properties.
 class Material3DesignSystem implements FlawlessDesignSystem {
   @override
   FlawlessColorScheme get colorScheme => Material3ColorScheme();
