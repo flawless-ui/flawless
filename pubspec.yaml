@@ -51,5 +51,10 @@ melos:
       run: melos run get && melos run sync:suite-version && melos run analyze && melos run format:verify && melos run test && melos run publish:dry-run
       description: Alpha release preflight (get, version sync, analyze, format verify, test, publish dry-run).
     ship:
-      run: melos version --yes && git push --follow-tags && melos publish --no-dry-run --yes
-      description: The Big Moment. Versions, tags, pushes, and publishes to pub.dev.
+      run: melos version --yes && melos publish --no-dry-run --yes
+      description: The Big Moment. Versions, tags, and publishes.
+
+command:
+  version:
+    hooks:
+      postversion: melos run sync:suite-version
