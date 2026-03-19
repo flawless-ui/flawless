@@ -10,15 +10,35 @@ import 'package:flawless_glass_theme/flawless_glass_theme.dart';
 export 'package:flawless_core/flawless_core.dart'
     show FlawlessButtonVariant, FlawlessButtonSize;
 
+/// A design-system aware button.
+///
+/// This widget selects the active Flawless implementation based on the current
+/// `FlawlessDesignSystem` provided by `flawless_theme`.
 class FlawlessButton extends StatelessWidget {
+  /// The text label displayed inside the button.
   final String label;
+
+  /// Called when the user taps the button.
+  ///
+  /// When `null`, the button is considered disabled.
   final VoidCallback? onPressed;
+
+  /// The visual style variant of the button.
   final FlawlessButtonVariant variant;
+
+  /// The size token used to resolve padding and typography.
   final FlawlessButtonSize size;
+
+  /// Whether to show a loading indicator.
   final bool isLoading;
+
+  /// Optional leading icon shown before the label.
   final Widget? leadingIcon;
+
+  /// Optional trailing icon shown after the label.
   final Widget? trailingIcon;
 
+  /// Creates a Flawless button.
   const FlawlessButton({
     super.key,
     required this.label,

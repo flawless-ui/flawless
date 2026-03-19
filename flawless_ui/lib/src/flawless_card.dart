@@ -10,16 +10,36 @@ import 'package:flawless_glass_theme/flawless_glass_theme.dart';
 export 'package:flawless_core/flawless_core.dart'
     show FlawlessCardVariant, FlawlessCardPadding;
 
+/// A design-system aware card.
+///
+/// This widget selects the active Flawless implementation based on the current
+/// `FlawlessDesignSystem` provided by `flawless_theme`.
 class FlawlessCard extends StatelessWidget {
+  /// The main content of the card.
   final Widget child;
+
+  /// Optional header content displayed above [child].
   final Widget? header;
+
+  /// Optional footer content displayed below [child].
   final Widget? footer;
+
+  /// Optional media content displayed at the top of the card.
   final Widget? media;
+
+  /// External margin around the card.
   final EdgeInsetsGeometry? margin;
+
+  /// The visual variant of the card.
   final FlawlessCardVariant variant;
+
+  /// The padding token used to resolve internal spacing.
   final FlawlessCardPadding padding;
+
+  /// Called when the card is tapped.
   final VoidCallback? onTap;
 
+  /// Creates a Flawless card.
   const FlawlessCard({
     super.key,
     required this.child,

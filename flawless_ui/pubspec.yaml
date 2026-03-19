@@ -1,5 +1,5 @@
 name: flawless_ui
-description: "Flawless generic UI facade package."
+description: "Public Flutter UI facade for Flawless: buttons, cards, and bottom navigation that adapt to the active Flawless design system."
 version: 0.1.0-alpha.1
 homepage: https://flawless.codelabmw.dev
 repository: https://github.com/flawless-ui/flawless
