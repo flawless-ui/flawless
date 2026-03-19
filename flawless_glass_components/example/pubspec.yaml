@@ -1,0 +1,28 @@
+name: flawless_glass_components_example
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flawless_glass_components:
+    path: ..
+  flawless_core:
+    path: ../../flawless_core
+  flawless_glass_theme:
+    path: ../../flawless_glass_theme
+  flawless_theme:
+    path: ../../flawless_theme
+
+dependency_overrides:
+  flawless_core:
+    path: ../../flawless_core
+  flawless_theme:
+    path: ../../flawless_theme
+  flawless_glass_theme:
+    path: ../../flawless_glass_theme
+
+flutter:
+  uses-material-design: true
