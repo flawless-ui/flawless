@@ -1,3 +1,7 @@
+## 0.1.0-alpha.3
+
+ - **DOCS**: add missing public api documentation.
+
 ## 0.1.0-alpha.2
 
  - **DOCS**(flawless_ui): improve docs, description, and add example.
