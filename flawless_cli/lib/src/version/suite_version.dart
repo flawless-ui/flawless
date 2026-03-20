@@ -1,1 +1,1 @@
-const String flawlessSuiteVersion = '0.1.0-alpha.4';
+const String flawlessSuiteVersion = '0.1.0-alpha.5';
