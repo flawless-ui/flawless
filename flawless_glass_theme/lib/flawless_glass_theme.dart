@@ -1,3 +1,6 @@
+/// Glass theme implementation for Flawless.
+library;
+
 import 'package:flutter/material.dart';
 import 'package:flawless_core/flawless_core.dart';
 import 'package:flawless_theme/flawless_theme.dart';

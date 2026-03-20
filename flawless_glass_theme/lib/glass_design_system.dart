@@ -1,3 +1,6 @@
+/// Glass (glassmorphism) design tokens and component properties for Flawless.
+library;
+
 import 'package:flawless_core/flawless_core.dart';
 
 /// Glass (glassmorphism) color tokens for Flawless.
@@ -79,6 +82,10 @@ class GlassTextStyle implements FlawlessTextStyle {
 
 /// Default component properties for glass buttons.
 class GlassButtonComponentProperties implements FlawlessComponentProperties {
+  /// Creates the default glass button component properties.
+  GlassButtonComponentProperties();
+
+  /// Map of default property values used by glass buttons.
   @override
   Map<String, dynamic> get properties => {
         'borderRadius': 18.0,
@@ -101,6 +108,10 @@ class GlassButtonComponentProperties implements FlawlessComponentProperties {
 
 /// Default component properties for glass cards.
 class GlassCardComponentProperties implements FlawlessComponentProperties {
+  /// Creates the default glass card component properties.
+  GlassCardComponentProperties();
+
+  /// Map of default property values used by glass cards.
   @override
   Map<String, dynamic> get properties => {
         'borderRadius': 24.0,
@@ -121,6 +132,10 @@ class GlassCardComponentProperties implements FlawlessComponentProperties {
 
 /// Default component properties for glass bottom navigation.
 class GlassBottomNavComponentProperties implements FlawlessComponentProperties {
+  /// Creates the default glass bottom navigation component properties.
+  GlassBottomNavComponentProperties();
+
+  /// Map of default property values used by glass bottom navigation.
   @override
   Map<String, dynamic> get properties => {
         'inactiveOpacity': 0.68,
