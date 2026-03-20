@@ -59,8 +59,3 @@ melos:
         git push origin main --follow-tags --force &&
         melos publish --no-dry-run --yes
       description: Bump versions, sync Dart constant, push to GitHub, and publish to Pub.dev.
-
-command:
-  version:
-    hooks:
-      postversion: melos run sync:suite-version
