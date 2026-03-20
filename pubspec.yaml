@@ -52,11 +52,11 @@ melos:
       description: Alpha release preflight (get, version sync, analyze, format verify, test, publish dry-run).
     ship:
       run: |
-        melos version --yes && \
-        melos run sync:suite-version && \
-        git add . && \
-        git commit --amend --no-edit && \
-        git push origin main --follow-tags --force && \
+        melos version --yes &&
+        melos run sync:suite-version &&
+        git add . &&
+        git commit --amend --no-edit &&
+        git push origin main --follow-tags --force &&
         melos publish --no-dry-run --yes
       description: Bump versions, sync Dart constant, push to GitHub, and publish to Pub.dev.
 

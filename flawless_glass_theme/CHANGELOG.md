@@ -1,3 +1,7 @@
+## 0.1.0-alpha.3
+
+ - **DOCS**: add missing public api documentation.
+
 ## 0.1.0-alpha.2
 
  - **DOCS**(flawless_glass_theme): improve docs and add example.
