@@ -1,3 +1,7 @@
+## 0.1.0-alpha.6
+
+ - **DOCS**: add CLI documentation and prepare for alpha.6.
+
 ## 0.1.0-alpha.5
 
  - **FEAT**(cli): add --version flag and sync logic.

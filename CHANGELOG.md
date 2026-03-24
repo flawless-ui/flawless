@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-03-24
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`flawless_cli` - `v0.1.0-alpha.6`](#flawless_cli---v010-alpha6)
+
+---
+
+#### `flawless_cli` - `v0.1.0-alpha.6`
+
+ - **DOCS**: add CLI documentation and prepare for alpha.6.
+
+
 ## 2026-03-20
 
 ### Changes
