@@ -44,6 +44,23 @@ Flawless is composed of 8 modular packages to give you total control over your s
 
 ---
 
+## Project Structure Evolution
+
+Flawless has been reorganized to separate core logic from community-driven innovation.
+
+```text
+flawless/
+├── packages/           # 📦 Core Suite (160/160 Quality Score)
+│   ├── flawless_core   # Headless contracts & primitives
+│   ├── flawless_cli    # Orchestration tool
+│   └── ...             # Theme & Component implementations
+├── community/          # 🤝 Community Lab
+│   ├── proposals/      # RFCs & Markdown specs for new components
+│   └── experimental/   # Unfinished/Voted community builds
+└── examples/           # 🚀 Showroom
+    └── showcase_apps/  # Full-scale sample apps (e.g., Liquid Fintech)
+```
+
 ## Quick Start
 
 ### 1) Install the CLI

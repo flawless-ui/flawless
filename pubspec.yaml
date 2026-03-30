@@ -5,14 +5,15 @@ environment:
   sdk: ^3.6.0
 
 workspace:
-  - flawless_cli
-  - flawless_core
-  - flawless_glass_components
-  - flawless_glass_theme
-  - flawless_material3_components
-  - flawless_material3_theme
-  - flawless_theme
-  - flawless_ui
+  - packages/flawless_cli
+  - packages/flawless_core
+  - packages/flawless_glass_components
+  - packages/flawless_glass_theme
+  - packages/flawless_material3_components
+  - packages/flawless_material3_theme
+  - packages/flawless_theme
+  - packages/flawless_ui
+  # - examples/showcase_apps/*
   
 
 dev_dependencies:
@@ -51,5 +52,5 @@ melos:
       run: melos run get && melos run sync:suite-version && melos run analyze && melos run format:verify && melos run test && melos run publish:dry-run
       description: Alpha release preflight (get, version sync, analyze, format verify, test, publish dry-run).
     ship:
-      run: melos version --yes && melos run sync:suite-version && git add . && git commit --amend --no-edit && git push origin main --follow-tags --force && melos publish --no-dry-run --yes
+      run: melos version --yes && melos run sync:suite-version && git add . && git commit --amend --no-edit && git push origin main --follow-tags --force && melos publish --no-dry-run --ignore="*example*" --yes
       description: Bump versions, sync Dart constant, push to GitHub, and publish to Pub.dev.
