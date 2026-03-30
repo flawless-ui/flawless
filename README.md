@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://pub.dev/packages/flawless_cli"><img src="https://img.shields.io/pub/v/flawless_cli?include_prereleases&label=version&color=blue" alt="Pub Version"></a>
   <a href="https://github.com/flawless-ui/flawless/actions/workflows/verify.yml"><img src="https://github.com/flawless-ui/flawless/actions/workflows/verify.yml/badge.svg" alt="Build Status"></a>
-  <a href="https://pub.dev/packages/flawless_cli"><img src="https://img.shields.io/pub/dt/flawless_cli?cache_bust=1" alt="Pub Downloads"></a>
+  <a href="https://pub.dev/packages/flawless_cli"><img src="https://img.shields.io/pub/downloads/flawless_cli?logo=dart" alt="Pub Downloads"></a>
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
   <a href="https://discord.gg/J7MuwrAPCT"><img src="https://img.shields.io/discord/1478174538104836227?label=discord&color=7289da" alt="Discord"></a>
   <a href="https://github.com/invertase/melos"><img src="https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square" alt="Melos"></a>
