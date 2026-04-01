@@ -54,3 +54,16 @@ melos:
     ship:
       run: melos version --yes && melos run sync:suite-version && git add . && git commit --amend --no-edit && git push origin main --follow-tags --force && melos publish --no-dry-run --ignore="*example*" --yes
       description: Bump versions, sync Dart constant, push to GitHub, and publish to Pub.dev.
+
+version:
+    # This ensures all packages in the suite share the same version number
+    # and the same changelog entries.
+    sync:
+      - flawless_cli
+      - flawless_core
+      - flawless_glass_components
+      - flawless_glass_theme
+      - flawless_material3_components
+      - flawless_material3_theme
+      - flawless_theme
+      - flawless_ui
