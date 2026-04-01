@@ -1,3 +1,5 @@
+## 0.1.0-alpha.6
+
 ## 0.1.0-alpha.2
 
  - **DOCS**(flawless_material3_theme): improve design system docs.

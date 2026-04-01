@@ -1,3 +1,5 @@
+## 0.1.0-alpha.6
+
 ## 0.1.0-alpha.3
 
  - **DOCS**: add missing public api documentation.

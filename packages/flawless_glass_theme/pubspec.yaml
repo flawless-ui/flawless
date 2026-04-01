@@ -1,6 +1,6 @@
 name: flawless_glass_theme
 description: "Glassmorphism design system implementation for Flawless."
-version: 0.1.0-alpha.3
+version: 0.1.0-alpha.6
 homepage: https://flawless.codelabmw.dev
 repository: https://github.com/flawless-ui/flawless
 issue_tracker: https://github.com/flawless-ui/flawless/issues
@@ -21,8 +21,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flawless_core: ^0.1.0-alpha.1
-  flawless_theme: ^0.1.0-alpha.1
+  flawless_core: ^0.1.0-alpha.6
+  flawless_theme: ^0.1.0-alpha.6
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 name: flawless_core
 description: Core contracts, tokens, and primitives for the Flawless design system.
-version: 0.1.0-alpha.1
+version: 0.1.0-alpha.6
 homepage: https://flawless.codelabmw.dev
 repository: https://github.com/flawless-ui/flawless
 issue_tracker: https://github.com/flawless-ui/flawless/issues
