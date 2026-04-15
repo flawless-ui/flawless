@@ -1,6 +1,6 @@
 name: flawless_theme
 description: Shared theming utilities and tokens for Flawless UI.
-version: 0.1.0-alpha.6
+version: 0.1.0-alpha.7
 homepage: https://flawless.codelabmw.dev
 repository: https://github.com/flawless-ui/flawless
 issue_tracker: https://github.com/flawless-ui/flawless/issues
@@ -21,7 +21,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flawless_core: ^0.1.0-alpha.6
+  flawless_core: ^0.1.0-alpha.7
   provider: ^6.0.5
   shared_preferences: ^2.2.2
 

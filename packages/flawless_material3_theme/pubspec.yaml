@@ -1,6 +1,6 @@
 name: flawless_material3_theme
 description: Material 3 design system implementation for Flawless.
-version: 0.1.0-alpha.6
+version: 0.1.0-alpha.7
 homepage: https://flawless.codelabmw.dev
 repository: https://github.com/flawless-ui/flawless
 issue_tracker: https://github.com/flawless-ui/flawless/issues
@@ -21,8 +21,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flawless_core: ^0.1.0-alpha.6
-  flawless_theme: ^0.1.0-alpha.6
+  flawless_core: ^0.1.0-alpha.7
+  flawless_theme: ^0.1.0-alpha.7
 
 dev_dependencies:
   flutter_test:

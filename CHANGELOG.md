@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2026-04-15
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`flawless_core` - `v0.1.0-alpha.7`](#flawless_core---v010-alpha7)
+ - [`flawless_glass_components` - `v0.1.0-alpha.7`](#flawless_glass_components---v010-alpha7)
+ - [`flawless_glass_theme` - `v0.1.0-alpha.7`](#flawless_glass_theme---v010-alpha7)
+ - [`flawless_material3_components` - `v0.1.0-alpha.7`](#flawless_material3_components---v010-alpha7)
+ - [`flawless_material3_theme` - `v0.1.0-alpha.7`](#flawless_material3_theme---v010-alpha7)
+ - [`flawless_ui` - `v0.1.0-alpha.7`](#flawless_ui---v010-alpha7)
+ - [`flawless_theme` - `v0.1.0-alpha.7`](#flawless_theme---v010-alpha7)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `flawless_theme` - `v0.1.0-alpha.7`
+
+---
+
+#### `flawless_core` - `v0.1.0-alpha.7`
+
+ - **FEAT**(core): finalize headless contracts and glass theme resolution for Alpha.7.
+
+#### `flawless_glass_components` - `v0.1.0-alpha.7`
+
+ - **FEAT**(core): finalize headless contracts and glass theme resolution for Alpha.7.
+
+#### `flawless_glass_theme` - `v0.1.0-alpha.7`
+
+ - **FEAT**(core): finalize headless contracts and glass theme resolution for Alpha.7.
+
+#### `flawless_material3_components` - `v0.1.0-alpha.7`
+
+ - **FEAT**(core): finalize headless contracts and glass theme resolution for Alpha.7.
+
+#### `flawless_material3_theme` - `v0.1.0-alpha.7`
+
+ - **FEAT**(core): finalize headless contracts and glass theme resolution for Alpha.7.
+
+#### `flawless_ui` - `v0.1.0-alpha.7`
+
+ - **FEAT**(core): finalize headless contracts and glass theme resolution for Alpha.7.
+
+
 ## 2026-04-01
 
 ### Changes
