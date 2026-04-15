@@ -92,6 +92,13 @@ class Material3ButtonComponentProperties
   @override
   Map<String, dynamic> get properties => {
         'borderRadius': 12.0,
+        'radii': {
+          'none': 0.0,
+          'sm': 10.0,
+          'md': 12.0,
+          'lg': 16.0,
+          'pill': 999.0,
+        },
         'disabledOpacity': 0.6,
         'outlineBorderWidth': 1.0,
         'padding': {
@@ -101,6 +108,43 @@ class Material3ButtonComponentProperties
         },
         'iconGap': 8.0,
         'loaderStrokeWidth': 2.0,
+        'colors': {
+          'primary': {
+            'background': '#000000',
+            'foreground': '#FFFFFF',
+            'border': '#000000',
+          },
+          'secondary': {
+            'background': '#6B7280',
+            'foreground': '#FFFFFF',
+            'border': '#6B7280',
+          },
+          'surface': {
+            'background': '#FFFFFF',
+            'foreground': '#000000',
+            'border': '#E5E7EB',
+          },
+          'outline': {
+            'background': 'transparent',
+            'foreground': '#000000',
+            'border': '#000000',
+          },
+          'ghost': {
+            'background': 'transparent',
+            'foreground': '#0B0F1A',
+            'border': 'transparent',
+          },
+          'destructive': {
+            'background': '#B3261E',
+            'foreground': '#FFFFFF',
+            'border': '#B3261E',
+          },
+          'inverse': {
+            'background': '#0B0F1A',
+            'foreground': '#FFFFFF',
+            'border': '#0B0F1A',
+          },
+        },
       };
 }
 

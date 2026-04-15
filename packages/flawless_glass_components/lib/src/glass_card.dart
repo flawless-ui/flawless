@@ -51,12 +51,22 @@ class FlawlessGlassCard extends StatelessWidget {
     final borderWidth = props.doubleValue('borderWidth');
     final blurSigma = props.doubleValue('glassBlurSigma');
     final glassOpacity = props.doubleValue('glassOpacity');
+    final tintColorToken = props.value('tintColor');
+    final borderColorToken = props.value('borderColor');
     final borderOpacity = props.doubleValue('borderOpacity');
+    final highlightColorToken = props.value('highlightColor');
     final highlightOpacity = props.doubleValue('highlightOpacity');
     final shadowOpacity = props.doubleValue('shadowOpacity');
 
-    final bg = _hex(colors.surface);
-    final borderColor = _hex(colors.onSurface).withValues(alpha: borderOpacity);
+    final bg =
+        tintColorToken is String ? _hex(tintColorToken) : _hex(colors.surface);
+    final borderBase = borderColorToken is String
+        ? _hex(borderColorToken)
+        : _hex(colors.onSurface);
+    final borderColor = borderBase.withValues(alpha: borderOpacity);
+    final highlightBase = highlightColorToken is String
+        ? _hex(highlightColorToken)
+        : Colors.white;
 
     final contentPadding = _paddingFor(padding, paddingMap);
 
@@ -128,7 +138,7 @@ class FlawlessGlassCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(radius),
                         border: Border.all(
                           color:
-                              Colors.white.withValues(alpha: highlightOpacity),
+                              highlightBase.withValues(alpha: highlightOpacity),
                           width: 0.9,
                         ),
                       ),

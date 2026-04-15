@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flawless_glass_theme/flawless_glass_theme.dart';
 
 export 'package:flawless_core/flawless_core.dart'
-    show FlawlessButtonVariant, FlawlessButtonSize;
+    show FlawlessButtonVariant, FlawlessButtonSize, FlawlessButtonRadius;
 
 class FlawlessGlassButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
   final FlawlessButtonVariant variant;
   final FlawlessButtonSize size;
+  final FlawlessButtonRadius radius;
   final bool isLoading;
   final Widget? leadingIcon;
   final Widget? trailingIcon;
@@ -23,6 +24,7 @@ class FlawlessGlassButton extends StatelessWidget {
     this.onPressed,
     this.variant = FlawlessButtonVariant.primary,
     this.size = FlawlessButtonSize.md,
+    this.radius = FlawlessButtonRadius.md,
     this.isLoading = false,
     this.leadingIcon,
     this.trailingIcon,
@@ -51,13 +53,17 @@ class FlawlessGlassButton extends StatelessWidget {
     final disabledOpacity = props.doubleValue('disabledOpacity');
     final outlineBorderWidth = props.doubleValue('outlineBorderWidth');
     final paddingMap = props.mapValue('padding');
+    final radiiMap = props.mapValue('radii');
     final iconGap = props.doubleValue('iconGap');
     final loaderStrokeWidth = props.doubleValue('loaderStrokeWidth');
     final blurSigma = props.doubleValue('glassBlurSigma');
     final glassOpacity = props.doubleValue('glassOpacity');
+    final variantFillOpacityMap = props.mapValue('variantFillOpacity');
     final borderOpacity = props.doubleValue('borderOpacity');
+    final variantBorderOpacityMap = props.mapValue('variantBorderOpacity');
     final highlightOpacity = props.doubleValue('highlightOpacity');
     final shadowOpacity = props.doubleValue('shadowOpacity');
+    final variantShadowOpacityMap = props.mapValue('variantShadowOpacity');
 
     final baseTextStyle = TextStyle(
       fontFamily: textStyleToken.fontFamily,
@@ -65,8 +71,43 @@ class FlawlessGlassButton extends StatelessWidget {
       fontWeight: _parseFontWeight(textStyleToken.fontWeight),
     );
 
-    final resolved =
-        _resolveColors(variant, colors, outlineBorderWidth: outlineBorderWidth);
+    final colorsByVariant = props.mergedMap('colors');
+
+    final resolved = _resolveColors(
+      variant,
+      colors,
+      colorsByVariant: colorsByVariant,
+      outlineBorderWidth: outlineBorderWidth,
+    );
+
+    final variantKey = switch (variant) {
+      FlawlessButtonVariant.primary => 'primary',
+      FlawlessButtonVariant.secondary => 'secondary',
+      FlawlessButtonVariant.surface => 'surface',
+      FlawlessButtonVariant.ghost => 'ghost',
+      FlawlessButtonVariant.outline => 'outline',
+      FlawlessButtonVariant.destructive => 'destructive',
+      FlawlessButtonVariant.inverse => 'inverse',
+    };
+
+    double mapOpacity(Map<String, dynamic> map, String key, double fallback) {
+      final v = map[key];
+      if (v is num) return v.toDouble();
+      return fallback;
+    }
+
+    final effectiveFillOpacity =
+        mapOpacity(variantFillOpacityMap, variantKey, glassOpacity);
+    final effectiveShadowOpacity =
+        mapOpacity(variantShadowOpacityMap, variantKey, shadowOpacity);
+    final effectiveBorderOpacity =
+        mapOpacity(variantBorderOpacityMap, variantKey, borderOpacity);
+
+    final resolvedRadius = _radiusForToken(
+      radius,
+      radiiMap,
+      fallback: borderRadius,
+    );
 
     final padding = _paddingForSize(size, paddingMap);
     final effectiveOnPressed = isLoading ? null : onPressed;
@@ -82,15 +123,15 @@ class FlawlessGlassButton extends StatelessWidget {
       duration: motion.fast,
       opacity: effectiveOnPressed == null ? disabledOpacity : 1.0,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(resolvedRadius),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(borderRadius),
+              borderRadius: BorderRadius.circular(resolvedRadius),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: shadowOpacity),
+                  color: Colors.black.withValues(alpha: effectiveShadowOpacity),
                   blurRadius: 22,
                   spreadRadius: 0,
                   offset: const Offset(0, 10),
@@ -102,19 +143,22 @@ class FlawlessGlassButton extends StatelessWidget {
                 Positioned.fill(
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(borderRadius),
+                      borderRadius: BorderRadius.circular(resolvedRadius),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
                           resolved.background.withValues(
-                              alpha: (glassOpacity * 1.15).clamp(0.0, 1.0)),
+                              alpha: (effectiveFillOpacity * 1.15)
+                                  .clamp(0.0, 1.0)),
                           resolved.background.withValues(
-                              alpha: (glassOpacity * 0.70).clamp(0.0, 1.0)),
+                              alpha: (effectiveFillOpacity * 0.70)
+                                  .clamp(0.0, 1.0)),
                         ],
                       ),
                       border: Border.all(
-                        color: resolved.border.withValues(alpha: borderOpacity),
+                        color: resolved.border
+                            .withValues(alpha: effectiveBorderOpacity),
                         width: resolved.borderWidth,
                       ),
                     ),
@@ -124,7 +168,7 @@ class FlawlessGlassButton extends StatelessWidget {
                   child: IgnorePointer(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(borderRadius),
+                        borderRadius: BorderRadius.circular(resolvedRadius),
                         border: Border.all(
                           color:
                               Colors.white.withValues(alpha: highlightOpacity),
@@ -165,6 +209,8 @@ class FlawlessGlassButton extends StatelessWidget {
     required double iconGap,
     required double loaderStrokeWidth,
   }) {
+    final hasLabel = label.trim().isNotEmpty;
+
     if (isLoading) {
       return Row(
         mainAxisSize: MainAxisSize.min,
@@ -178,21 +224,66 @@ class FlawlessGlassButton extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation<Color>(foreground),
             ),
           ),
-          SizedBox(width: iconGap),
-          Text(label),
+          if (hasLabel) ...[
+            SizedBox(width: iconGap),
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+              ),
+            ),
+          ],
         ],
       );
     }
 
     final children = <Widget>[];
     if (leadingIcon != null) {
-      children.add(leadingIcon!);
-      children.add(SizedBox(width: iconGap));
+      children.add(IconTheme(
+        data: IconThemeData(size: textStyle.fontSize, color: foreground),
+        child: leadingIcon!,
+      ));
+      if (hasLabel || trailingIcon != null) {
+        children.add(SizedBox(width: iconGap));
+      }
     }
-    children.add(Text(label));
+    if (hasLabel) {
+      children.add(
+        Flexible(
+          fit: FlexFit.loose,
+          child: Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+          ),
+        ),
+      );
+    }
     if (trailingIcon != null) {
-      children.add(SizedBox(width: iconGap));
-      children.add(trailingIcon!);
+      if (hasLabel || leadingIcon != null) {
+        children.add(SizedBox(width: iconGap));
+      }
+      children.add(IconTheme(
+        data: IconThemeData(size: textStyle.fontSize, color: foreground),
+        child: trailingIcon!,
+      ));
+    }
+
+    // For single-icon-only buttons, avoid Row constraints that can overflow
+    if (children.length == 1 && leadingIcon != null) {
+      return Center(
+        child: SizedBox(
+          width: textStyle.fontSize,
+          height: textStyle.fontSize,
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: children.first,
+          ),
+        ),
+      );
     }
 
     return Row(
@@ -202,11 +293,63 @@ class FlawlessGlassButton extends StatelessWidget {
     );
   }
 
+  double _radiusForToken(
+    FlawlessButtonRadius token,
+    Map<String, dynamic> radiiMap, {
+    required double fallback,
+  }) {
+    final key = switch (token) {
+      FlawlessButtonRadius.none => 'none',
+      FlawlessButtonRadius.sm => 'sm',
+      FlawlessButtonRadius.md => 'md',
+      FlawlessButtonRadius.lg => 'lg',
+      FlawlessButtonRadius.pill => 'pill',
+    };
+
+    final entry = radiiMap[key];
+    if (entry is num) return entry.toDouble();
+    return fallback;
+  }
+
   _ResolvedGlassButtonColors _resolveColors(
     FlawlessButtonVariant variant,
     FlawlessColorScheme colors, {
+    required Map<String, dynamic> colorsByVariant,
     required double outlineBorderWidth,
   }) {
+    final key = switch (variant) {
+      FlawlessButtonVariant.primary => 'primary',
+      FlawlessButtonVariant.secondary => 'secondary',
+      FlawlessButtonVariant.surface => 'surface',
+      FlawlessButtonVariant.ghost => 'ghost',
+      FlawlessButtonVariant.outline => 'outline',
+      FlawlessButtonVariant.destructive => 'destructive',
+      FlawlessButtonVariant.inverse => 'inverse',
+    };
+
+    final entry = colorsByVariant[key];
+    if (entry is Map) {
+      final map = entry.cast<String, dynamic>();
+      final bg = map['background'];
+      final fg = map['foreground'];
+      final border = map['border'];
+
+      final background = _tokenColor(bg, fallback: Colors.transparent);
+      final foreground = _tokenColor(
+        fg,
+        fallback: _hexToColor(colors.onSurface),
+      );
+      final borderColor = _tokenColor(border, fallback: Colors.transparent);
+
+      return _ResolvedGlassButtonColors(
+        background: background,
+        foreground: foreground,
+        border: borderColor,
+        borderWidth: outlineBorderWidth,
+      );
+    }
+
+    // Fallbacks
     Color hex(String h) {
       h = h.replaceFirst('#', '');
       if (h.length == 6) h = 'FF$h';
@@ -216,6 +359,7 @@ class FlawlessGlassButton extends StatelessWidget {
     final primary = hex(colors.primary);
     final secondary = hex(colors.secondary);
     final onSurface = hex(colors.onSurface);
+    final surface = hex(colors.surface);
 
     switch (variant) {
       case FlawlessButtonVariant.secondary:
@@ -227,14 +371,14 @@ class FlawlessGlassButton extends StatelessWidget {
         );
       case FlawlessButtonVariant.ghost:
         return _ResolvedGlassButtonColors(
-          background: onSurface,
+          background: Colors.transparent,
           foreground: primary,
-          border: primary,
+          border: Colors.transparent,
           borderWidth: outlineBorderWidth,
         );
       case FlawlessButtonVariant.outline:
         return _ResolvedGlassButtonColors(
-          background: onSurface,
+          background: Colors.transparent,
           foreground: primary,
           border: primary,
           borderWidth: outlineBorderWidth,
@@ -252,6 +396,20 @@ class FlawlessGlassButton extends StatelessWidget {
           background: primary,
           foreground: hex(colors.onPrimary),
           border: primary,
+          borderWidth: outlineBorderWidth,
+        );
+      case FlawlessButtonVariant.surface:
+        return _ResolvedGlassButtonColors(
+          background: surface,
+          foreground: onSurface,
+          border: surface,
+          borderWidth: outlineBorderWidth,
+        );
+      case FlawlessButtonVariant.inverse:
+        return _ResolvedGlassButtonColors(
+          background: onSurface,
+          foreground: surface,
+          border: onSurface,
           borderWidth: outlineBorderWidth,
         );
     }
@@ -318,6 +476,22 @@ class FlawlessGlassButton extends StatelessWidget {
       default:
         return FontWeight.normal;
     }
+  }
+
+  Color _hexToColor(String hex) {
+    hex = hex.replaceFirst('#', '');
+    if (hex.length == 6) {
+      hex = 'FF$hex';
+    }
+    return Color(int.parse(hex, radix: 16));
+  }
+
+  Color _tokenColor(Object? token, {required Color fallback}) {
+    if (token is String) {
+      if (token == 'transparent') return Colors.transparent;
+      if (token.startsWith('#')) return _hexToColor(token);
+    }
+    return fallback;
   }
 }
 

@@ -82,13 +82,18 @@ class GlassTextStyle implements FlawlessTextStyle {
 
 /// Default component properties for glass buttons.
 class GlassButtonComponentProperties implements FlawlessComponentProperties {
-  /// Creates the default glass button component properties.
   GlassButtonComponentProperties();
 
-  /// Map of default property values used by glass buttons.
   @override
   Map<String, dynamic> get properties => {
         'borderRadius': 18.0,
+        'radii': {
+          'none': 0.0,
+          'sm': 14.0,
+          'md': 18.0,
+          'lg': 24.0,
+          'pill': 999.0,
+        },
         'disabledOpacity': 0.45,
         'outlineBorderWidth': 1.2,
         'padding': {
@@ -100,9 +105,73 @@ class GlassButtonComponentProperties implements FlawlessComponentProperties {
         'loaderStrokeWidth': 2.2,
         'glassBlurSigma': 62.0,
         'glassOpacity': 0.045,
+        'variantFillOpacity': {
+          'primary': 0.075,
+          'secondary': 0.065,
+          'surface': 0.06,
+          'outline': 0.0,
+          'ghost': 0.0,
+          'destructive': 0.075,
+          'inverse': 0.075,
+        },
         'borderOpacity': 0.10,
+        'variantBorderOpacity': {
+          'primary': 0.06,
+          'secondary': 0.10,
+          'surface': 0.10,
+          'outline': 0.20,
+          'ghost': 0.0,
+          'destructive': 0.14,
+          'inverse': 0.08,
+        },
         'highlightOpacity': 0.05,
         'shadowOpacity': 0.05,
+        'variantShadowOpacity': {
+          'primary': 0.05,
+          'secondary': 0.05,
+          'surface': 0.04,
+          'outline': 0.0,
+          'ghost': 0.0,
+          'destructive': 0.05,
+          'inverse': 0.05,
+        },
+        'colors': {
+          'primary': {
+            'background': '#FFFFFF',
+            'foreground': '#0B0F1A',
+            'border': 'transparent',
+          },
+          'secondary': {
+            'background': '#FFFFFF',
+            'foreground': '#0B0F1A',
+            'border': '#FFFFFF',
+          },
+          'surface': {
+            'background': '#FFFFFF',
+            'foreground': '#0B0F1A',
+            'border': '#FFFFFF',
+          },
+          'outline': {
+            'background': 'transparent',
+            'foreground': '#0B0F1A',
+            'border': '#FFFFFF',
+          },
+          'ghost': {
+            'background': 'transparent',
+            'foreground': '#0B0F1A',
+            'border': 'transparent',
+          },
+          'destructive': {
+            'background': '#FEE2E2',
+            'foreground': '#7F1D1D',
+            'border': '#EF4444',
+          },
+          'inverse': {
+            'background': '#F3F4F6',
+            'foreground': '#0B0F1A',
+            'border': '#FFFFFF',
+          },
+        },
       };
 }
 
@@ -114,11 +183,14 @@ class GlassCardComponentProperties implements FlawlessComponentProperties {
   /// Map of default property values used by glass cards.
   @override
   Map<String, dynamic> get properties => {
-        'borderRadius': 24.0,
+        'borderRadius': 34.0,
         'borderWidth': 1.0,
-        'glassBlurSigma': 3.0,
-        'glassOpacity': 0.02,
-        'borderOpacity': 0.18,
+        'glassBlurSigma': 15.0,
+        'glassOpacity': 0.18,
+        'tintColor': '#FFFFFF',
+        'borderColor': '#FFFFFF',
+        'borderOpacity': 0.34,
+        'highlightColor': '#FFFFFF',
         'highlightOpacity': 0.08,
         'shadowOpacity': 0.04,
         'padding': {

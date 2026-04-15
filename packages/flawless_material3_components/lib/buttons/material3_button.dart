@@ -5,7 +5,7 @@ import 'package:flawless_material3_theme/flawless_material3_theme.dart';
 
 /// Button visual variants.
 export 'package:flawless_core/flawless_core.dart'
-    show FlawlessButtonVariant, FlawlessButtonSize;
+    show FlawlessButtonVariant, FlawlessButtonSize, FlawlessButtonRadius;
 
 /// A Material 3 styled button using Flawless contracts.
 class FlawlessMaterial3Button extends StatelessWidget {
@@ -13,6 +13,7 @@ class FlawlessMaterial3Button extends StatelessWidget {
   final VoidCallback? onPressed;
   final FlawlessButtonVariant variant;
   final FlawlessButtonSize size;
+  final FlawlessButtonRadius radius;
   final bool isLoading;
   final Widget? leadingIcon;
   final Widget? trailingIcon;
@@ -23,6 +24,7 @@ class FlawlessMaterial3Button extends StatelessWidget {
     this.onPressed,
     this.variant = FlawlessButtonVariant.primary,
     this.size = FlawlessButtonSize.md,
+    this.radius = FlawlessButtonRadius.md,
     this.isLoading = false,
     this.leadingIcon,
     this.trailingIcon,
@@ -30,7 +32,6 @@ class FlawlessMaterial3Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final designSystem = FlawlessTheme.designSystemOf(
       context,
       fallback: Material3DesignSystem(),
@@ -52,8 +53,16 @@ class FlawlessMaterial3Button extends StatelessWidget {
     final disabledOpacity = buttonProps.doubleValue('disabledOpacity');
     final outlineBorderWidth = buttonProps.doubleValue('outlineBorderWidth');
     final paddingMap = buttonProps.mapValue('padding');
+    final radiiMap = buttonProps.mapValue('radii');
     final iconGap = buttonProps.doubleValue('iconGap');
     final loaderStrokeWidth = buttonProps.doubleValue('loaderStrokeWidth');
+    final colorsByVariant = buttonProps.mergedMap('colors');
+
+    final resolvedRadius = _radiusForToken(
+      radius,
+      radiiMap,
+      fallback: borderRadius,
+    );
 
     // Map design tokens to concrete Flutter styles.
     final baseTextStyle = TextStyle(
@@ -65,6 +74,7 @@ class FlawlessMaterial3Button extends StatelessWidget {
     final buttonColors = _resolveColorsForVariant(
       variant,
       colors,
+      colorsByVariant: colorsByVariant,
       outlineBorderWidth: outlineBorderWidth,
     );
 
@@ -72,49 +82,66 @@ class FlawlessMaterial3Button extends StatelessWidget {
 
     final effectiveOnPressed = isLoading ? null : onPressed;
 
+    final isDisabled = effectiveOnPressed == null;
+    final background = isDisabled
+        ? buttonColors.background.withValues(alpha: disabledOpacity)
+        : buttonColors.background;
+    final foreground = isDisabled
+        ? buttonColors.foreground.withValues(alpha: disabledOpacity)
+        : buttonColors.foreground;
+
     final child = _buildContent(
-      theme,
       baseTextStyle,
-      foreground: buttonColors.foreground,
+      foreground: foreground,
       iconGap: iconGap,
       loaderStrokeWidth: loaderStrokeWidth,
     );
 
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: buttonColors.background,
-        foregroundColor: buttonColors.foreground,
-        disabledBackgroundColor:
-            buttonColors.background.withValues(alpha: disabledOpacity),
-        disabledForegroundColor:
-            buttonColors.foreground.withValues(alpha: disabledOpacity),
-        padding: padding,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-          side: BorderSide(
-            color: buttonColors.borderSide.color,
-            width: buttonColors.borderSide.style == BorderStyle.none
-                ? 0
-                : buttonColors.borderSide.width,
-            style: buttonColors.borderSide.style,
+    return AnimatedOpacity(
+      duration: motion.fast,
+      opacity: isDisabled ? disabledOpacity : 1.0,
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: effectiveOnPressed,
+          borderRadius: BorderRadius.circular(resolvedRadius),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: background,
+              borderRadius: BorderRadius.circular(resolvedRadius),
+              border: Border.all(
+                color: buttonColors.borderSide.color,
+                width: buttonColors.borderSide.style == BorderStyle.none
+                    ? 0
+                    : buttonColors.borderSide.width,
+                style: buttonColors.borderSide.style,
+              ),
+            ),
+            child: Padding(
+              padding: padding,
+              child: DefaultTextStyle.merge(
+                style: baseTextStyle.copyWith(color: foreground),
+                child: IconTheme(
+                  data: IconThemeData(
+                      size: baseTextStyle.fontSize, color: foreground),
+                  child: Center(child: child),
+                ),
+              ),
+            ),
           ),
         ),
-        textStyle: baseTextStyle,
-        elevation: buttonColors.elevation,
-        animationDuration: motion.fast,
       ),
-      onPressed: effectiveOnPressed,
-      child: child,
     );
   }
 
   Widget _buildContent(
-    ThemeData theme,
     TextStyle textStyle, {
     required Color foreground,
     required double iconGap,
     required double loaderStrokeWidth,
   }) {
+    final hasLabel = label.trim().isNotEmpty;
+
     if (isLoading) {
       return Row(
         mainAxisSize: MainAxisSize.min,
@@ -130,27 +157,51 @@ class FlawlessMaterial3Button extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: iconGap),
-          Text(label),
+          if (hasLabel) ...[
+            SizedBox(width: iconGap),
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+              ),
+            ),
+          ],
         ],
       );
     }
 
     final children = <Widget>[];
     if (leadingIcon != null) {
-      children.add(IconTheme(
-        data: IconThemeData(size: textStyle.fontSize, color: foreground),
-        child: leadingIcon!,
-      ));
-      children.add(SizedBox(width: iconGap));
+      children.add(leadingIcon!);
+      if (hasLabel || trailingIcon != null) {
+        children.add(SizedBox(width: iconGap));
+      }
     }
-    children.add(Text(label));
+    if (hasLabel) {
+      children.add(
+        Flexible(
+          fit: FlexFit.loose,
+          child: Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            softWrap: false,
+          ),
+        ),
+      );
+    }
     if (trailingIcon != null) {
-      children.add(SizedBox(width: iconGap));
-      children.add(IconTheme(
-        data: IconThemeData(size: textStyle.fontSize, color: foreground),
-        child: trailingIcon!,
-      ));
+      if (hasLabel || leadingIcon != null) {
+        children.add(SizedBox(width: iconGap));
+      }
+      children.add(trailingIcon!);
+    }
+
+    // For single-icon-only buttons, avoid Row constraints that can overflow
+    if (children.length == 1 && leadingIcon != null) {
+      return Center(child: children.first);
     }
 
     return Row(
@@ -160,11 +211,66 @@ class FlawlessMaterial3Button extends StatelessWidget {
     );
   }
 
+  double _radiusForToken(
+    FlawlessButtonRadius token,
+    Map<String, dynamic> radiiMap, {
+    required double fallback,
+  }) {
+    final key = switch (token) {
+      FlawlessButtonRadius.none => 'none',
+      FlawlessButtonRadius.sm => 'sm',
+      FlawlessButtonRadius.md => 'md',
+      FlawlessButtonRadius.lg => 'lg',
+      FlawlessButtonRadius.pill => 'pill',
+    };
+
+    final entry = radiiMap[key];
+    if (entry is num) return entry.toDouble();
+    return fallback;
+  }
+
   _ResolvedButtonColors _resolveColorsForVariant(
     FlawlessButtonVariant variant,
     FlawlessColorScheme colors, {
+    required Map<String, dynamic> colorsByVariant,
     required double outlineBorderWidth,
   }) {
+    final key = switch (variant) {
+      FlawlessButtonVariant.primary => 'primary',
+      FlawlessButtonVariant.secondary => 'secondary',
+      FlawlessButtonVariant.surface => 'surface',
+      FlawlessButtonVariant.ghost => 'ghost',
+      FlawlessButtonVariant.outline => 'outline',
+      FlawlessButtonVariant.destructive => 'destructive',
+      FlawlessButtonVariant.inverse => 'inverse',
+    };
+
+    final entry = colorsByVariant[key];
+    if (entry is Map) {
+      final map = entry.cast<String, dynamic>();
+      final bg = map['background'];
+      final fg = map['foreground'];
+      final border = map['border'];
+
+      final background = _tokenColor(bg, fallback: Colors.transparent);
+      final foreground = _tokenColor(
+        fg,
+        fallback: _hexToColor(colors.onSurface),
+      );
+      final borderColor = _tokenColor(border, fallback: Colors.transparent);
+
+      final needsBorder = variant == FlawlessButtonVariant.outline ||
+          borderColor != Colors.transparent;
+      return _ResolvedButtonColors(
+        background: background,
+        foreground: foreground,
+        borderSide: needsBorder
+            ? BorderSide(color: borderColor, width: outlineBorderWidth)
+            : BorderSide.none,
+        elevation: 0,
+      );
+    }
+
     switch (variant) {
       case FlawlessButtonVariant.secondary:
         return _ResolvedButtonColors(
@@ -194,6 +300,18 @@ class FlawlessMaterial3Button extends StatelessWidget {
         return _ResolvedButtonColors(
           background: _hexToColor(colors.primary),
           foreground: _hexToColor(colors.onPrimary),
+        );
+      case FlawlessButtonVariant.surface:
+        final surface = _hexToColor(colors.surface);
+        return _ResolvedButtonColors(
+          background: surface,
+          foreground: _hexToColor(colors.onSurface),
+        );
+      case FlawlessButtonVariant.inverse:
+        final onSurface = _hexToColor(colors.onSurface);
+        return _ResolvedButtonColors(
+          background: onSurface,
+          foreground: _hexToColor(colors.surface),
         );
     }
   }
@@ -241,6 +359,14 @@ class FlawlessMaterial3Button extends StatelessWidget {
       hex = 'FF$hex';
     }
     return Color(int.parse(hex, radix: 16));
+  }
+
+  Color _tokenColor(Object? token, {required Color fallback}) {
+    if (token is String) {
+      if (token == 'transparent') return Colors.transparent;
+      if (token.startsWith('#')) return _hexToColor(token);
+    }
+    return fallback;
   }
 
   FontWeight _parseFontWeight(String weight) {

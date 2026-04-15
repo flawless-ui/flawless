@@ -8,7 +8,7 @@ import 'package:flawless_glass_components/flawless_glass_components.dart';
 import 'package:flawless_glass_theme/flawless_glass_theme.dart';
 
 export 'package:flawless_core/flawless_core.dart'
-    show FlawlessButtonVariant, FlawlessButtonSize;
+    show FlawlessButtonVariant, FlawlessButtonSize, FlawlessButtonRadius;
 
 /// A design-system aware button.
 ///
@@ -29,6 +29,9 @@ class FlawlessButton extends StatelessWidget {
   /// The size token used to resolve padding and typography.
   final FlawlessButtonSize size;
 
+  /// The corner radius token used to resolve button rounding.
+  final FlawlessButtonRadius radius;
+
   /// Whether to show a loading indicator.
   final bool isLoading;
 
@@ -45,6 +48,7 @@ class FlawlessButton extends StatelessWidget {
     this.onPressed,
     this.variant = FlawlessButtonVariant.primary,
     this.size = FlawlessButtonSize.md,
+    this.radius = FlawlessButtonRadius.md,
     this.isLoading = false,
     this.leadingIcon,
     this.trailingIcon,
@@ -60,6 +64,7 @@ class FlawlessButton extends StatelessWidget {
         onPressed: onPressed,
         variant: variant,
         size: size,
+        radius: radius,
         isLoading: isLoading,
         leadingIcon: leadingIcon,
         trailingIcon: trailingIcon,
@@ -72,6 +77,7 @@ class FlawlessButton extends StatelessWidget {
         onPressed: onPressed,
         variant: variant,
         size: size,
+        radius: radius,
         isLoading: isLoading,
         leadingIcon: leadingIcon,
         trailingIcon: trailingIcon,
@@ -83,6 +89,7 @@ class FlawlessButton extends StatelessWidget {
       onPressed: onPressed,
       variant: variant,
       size: size,
+      radius: radius,
       isLoading: isLoading,
       leadingIcon: leadingIcon,
       trailingIcon: trailingIcon,
