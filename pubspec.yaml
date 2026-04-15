@@ -13,7 +13,7 @@ workspace:
   - packages/flawless_material3_theme
   - packages/flawless_theme
   - packages/flawless_ui
-  # - examples/showcase_apps/*
+  - examples/showcase_apps/cards/liquid_fintech
   
 
 dev_dependencies:
@@ -62,6 +62,12 @@ melos:
     preflight:
       run: melos run get && melos run sync:suite-version && melos run analyze && melos run format:verify && melos run test && melos run publish:dry-run
       description: Alpha release preflight (get, version sync, analyze, format verify, test, publish dry-run).
+    prepare:
+      run: melos version --yes && melos run sync:suite-version
+      description: Prepare for release (bump versions and sync suite version).
+    deploy:
+      run: git add . && git commit --amend --no-edit && git push origin main --follow-tags --force && melos publish --no-dry-run --ignore="*example*" --yes
+      description: Deploy changes (push to GitHub & publish to Pub.dev).
     ship:
       run: melos version --yes && melos run sync:suite-version && git add . && git commit --amend --no-edit && git push origin main --follow-tags --force && melos publish --no-dry-run --ignore="*example*" --yes
       description: Bump versions, sync Dart constant, push to GitHub, and publish to Pub.dev.

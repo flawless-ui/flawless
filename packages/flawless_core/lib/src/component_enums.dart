@@ -10,9 +10,19 @@ enum FlawlessCardVariant { elevated, filled, outline }
 
 enum FlawlessCardPadding { none, sm, md, lg }
 
-enum FlawlessButtonVariant { primary, secondary, ghost, outline, destructive }
+enum FlawlessButtonVariant {
+  primary,
+  secondary,
+  surface,
+  outline,
+  ghost,
+  destructive,
+  inverse
+}
 
 enum FlawlessButtonSize { sm, md, lg }
+
+enum FlawlessButtonRadius { none, sm, md, lg, pill }
 
 enum FlawlessAlertVariant { success, error, info, warning }
 
