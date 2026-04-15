@@ -7,10 +7,12 @@ class FlawlessBottomNavDemoScreen extends StatefulWidget {
   const FlawlessBottomNavDemoScreen({super.key});
 
   @override
-  State<FlawlessBottomNavDemoScreen> createState() => _FlawlessBottomNavDemoScreenState();
+  State<FlawlessBottomNavDemoScreen> createState() =>
+      _FlawlessBottomNavDemoScreenState();
 }
 
-class _FlawlessBottomNavDemoScreenState extends State<FlawlessBottomNavDemoScreen> {
+class _FlawlessBottomNavDemoScreenState
+    extends State<FlawlessBottomNavDemoScreen> {
   int _index = 0;
 
   @override
@@ -24,9 +26,18 @@ class _FlawlessBottomNavDemoScreenState extends State<FlawlessBottomNavDemoScree
       appBar: AppBar(title: const Text('One-command swap')),
       bottomNavigationBar: FlawlessBottomNavBar(
         items: [
-          FlawlessBottomNavItem(iconCodePoint: Icons.home_outlined.codePoint, label: 'Home'),
-          FlawlessBottomNavItem(iconCodePoint: Icons.pie_chart_outline.codePoint, label: 'Portfolio'),
-          FlawlessBottomNavItem(iconCodePoint: Icons.person_outline.codePoint, label: 'Profile'),
+          FlawlessBottomNavItem(
+            iconCodePoint: Icons.home_outlined.codePoint,
+            label: 'Home',
+          ),
+          FlawlessBottomNavItem(
+            iconCodePoint: Icons.pie_chart_outline.codePoint,
+            label: 'Portfolio',
+          ),
+          FlawlessBottomNavItem(
+            iconCodePoint: Icons.person_outline.codePoint,
+            label: 'Profile',
+          ),
         ],
         currentIndex: _index,
         onChanged: (i) => setState(() => _index = i),
@@ -38,9 +49,9 @@ class _FlawlessBottomNavDemoScreenState extends State<FlawlessBottomNavDemoScree
             children: [
               Text(
                 'This is your app shell. Swap themes without refactoring screens.',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w900,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900),
               ),
               const SizedBox(height: 10),
               _PromptTile(text: 'How much did I spend last month?'),
@@ -59,9 +70,7 @@ class _FlawlessBottomNavDemoScreenState extends State<FlawlessBottomNavDemoScree
                     children: [
                       Text(
                         isGlass ? 'You have tried it now!' : 'Try the swap',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
+                        style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(fontWeight: FontWeight.w900),
                       ),
                       const SizedBox(height: 8),
@@ -70,22 +79,26 @@ class _FlawlessBottomNavDemoScreenState extends State<FlawlessBottomNavDemoScree
                             ? 'Nice. Now open Glass tokens and make it yours.'
                             : 'Run the command below, then hot-restart the app.',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: cs.onSurface.withValues(alpha: 0.72),
-                              height: 1.3,
-                            ),
+                          color: cs.onSurface.withValues(alpha: 0.72),
+                          height: 1.3,
+                        ),
                       ),
                       if (!isGlass) ...[
                         const SizedBox(height: 12),
                         Container(
                           width: double.infinity,
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 10,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.black.withValues(alpha: 0.92),
                             borderRadius: BorderRadius.circular(14),
                           ),
                           child: Text(
                             r'flawless_cli add theme glass',
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(
                                   fontFamily: 'monospace',
                                   color: Colors.white.withValues(alpha: 0.92),
                                   fontWeight: FontWeight.w800,
@@ -106,13 +119,18 @@ class _FlawlessBottomNavDemoScreenState extends State<FlawlessBottomNavDemoScree
             child: IgnorePointer(
               child: Center(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 10,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.black.withValues(alpha: 0.92),
                     borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text(
-                    isGlass ? 'Volla! Theme swapped → Glass' : 'Swap theme with 1 command →',
+                    isGlass
+                        ? 'Volla! Theme swapped → Glass'
+                        : 'Swap theme with 1 command →',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -140,12 +158,11 @@ class _PromptTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         child: Text(
           text,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
         ),
       ),
     );
   }
 }
-

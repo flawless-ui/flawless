@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flawless_theme/flawless_theme.dart';
 import 'package:flawless_material3_theme/flawless_material3_theme.dart';
 import 'package:flawless_glass_theme/flawless_glass_theme.dart';
-import 'flawless_demo_home_screen.dart';
+import 'flawless_cow_screen.dart';
 import 'flawless_active_theme.dart';
 
 class FlawlessAppRoot extends StatefulWidget {
@@ -50,7 +50,7 @@ class _FlawlessAppRootState extends State<FlawlessAppRoot> {
             themeMode: _controller.themeMode,
             theme: _createTheme(Brightness.light),
             darkTheme: _createTheme(Brightness.dark),
-            home: const FlawlessDemoHomeScreen(),
+            home: const FlawlessCowScreen(),
           );
         },
       ),

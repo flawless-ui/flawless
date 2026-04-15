@@ -18,6 +18,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # of the product and file versions while build-number is used as the build suffix.
 version: 1.0.0+1
 
+resolution: workspace
+
 environment:
   sdk: ^3.10.4
 
@@ -34,13 +36,37 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  flawless_core: ^0.1.0-alpha.6
-  flawless_theme: ^0.1.0-alpha.6
-  flawless_ui: ^0.1.0-alpha.6
-  flawless_material3_theme: ^0.1.0-alpha.6
-  flawless_material3_components: ^0.1.0-alpha.6
-  flawless_glass_theme: ^0.1.0-alpha.6
-  flawless_glass_components: ^0.1.0-alpha.6
+  device_preview: ^1.3.1
+  flawless_core:
+    path: ../../../../packages/flawless_core
+  flawless_theme:
+    path: ../../../../packages/flawless_theme
+  flawless_ui:
+    path: ../../../../packages/flawless_ui
+  flawless_material3_theme:
+    path: ../../../../packages/flawless_material3_theme
+  flawless_material3_components:
+    path: ../../../../packages/flawless_material3_components
+  flawless_glass_theme:
+    path: ../../../../packages/flawless_glass_theme
+  flawless_glass_components:
+    path: ../../../../packages/flawless_glass_components
+
+# dependency_overrides:
+#   flawless_core:
+#     path: ../../../packages/flawless_core
+#   flawless_theme:
+#     path: ../../../packages/flawless_theme
+#   flawless_ui:
+#     path: ../../../packages/flawless_ui
+#   flawless_material3_theme:
+#     path: ../../../packages/flawless_material3_theme
+#   flawless_material3_components:
+#     path: ../../../packages/flawless_material3_components
+#   flawless_glass_theme:
+#     path: ../../../packages/flawless_glass_theme
+#   flawless_glass_components:
+#     path: ../../../packages/flawless_glass_components
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +89,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    - assets/flawless-logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

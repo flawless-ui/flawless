@@ -8,10 +8,12 @@ class FlawlessMixedThemeDemoScreen extends StatefulWidget {
   const FlawlessMixedThemeDemoScreen({super.key});
 
   @override
-  State<FlawlessMixedThemeDemoScreen> createState() => _FlawlessMixedThemeDemoScreenState();
+  State<FlawlessMixedThemeDemoScreen> createState() =>
+      _FlawlessMixedThemeDemoScreenState();
 }
 
-class _FlawlessMixedThemeDemoScreenState extends State<FlawlessMixedThemeDemoScreen> {
+class _FlawlessMixedThemeDemoScreenState
+    extends State<FlawlessMixedThemeDemoScreen> {
   int _index = 0;
 
   @override
@@ -20,9 +22,18 @@ class _FlawlessMixedThemeDemoScreenState extends State<FlawlessMixedThemeDemoScr
     final material3 = Material3DesignSystem();
 
     final items = <FlawlessBottomNavItem>[
-      FlawlessBottomNavItem(iconCodePoint: Icons.home_outlined.codePoint, label: 'Home'),
-      FlawlessBottomNavItem(iconCodePoint: Icons.pie_chart_outline.codePoint, label: 'Portfolio'),
-      FlawlessBottomNavItem(iconCodePoint: Icons.person_outline.codePoint, label: 'Profile'),
+      FlawlessBottomNavItem(
+        iconCodePoint: Icons.home_outlined.codePoint,
+        label: 'Home',
+      ),
+      FlawlessBottomNavItem(
+        iconCodePoint: Icons.pie_chart_outline.codePoint,
+        label: 'Portfolio',
+      ),
+      FlawlessBottomNavItem(
+        iconCodePoint: Icons.person_outline.codePoint,
+        label: 'Profile',
+      ),
     ];
 
     return FlawlessTheme(
@@ -44,7 +55,10 @@ class _FlawlessMixedThemeDemoScreenState extends State<FlawlessMixedThemeDemoScr
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black.withValues(alpha: 0.86),
                       borderRadius: BorderRadius.circular(999),
@@ -73,8 +87,11 @@ class _FlawlessMixedThemeDemoScreenState extends State<FlawlessMixedThemeDemoScr
                         const SizedBox(height: 6),
                         Text(
                           'Your app uses Flawless facade widgets. The active design system decides the visuals. Below, a Material 3 subtree is embedded inside a Glass shell.',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.72),
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurface.withValues(alpha: 0.72),
                                 height: 1.3,
                               ),
                         ),
@@ -86,14 +103,20 @@ class _FlawlessMixedThemeDemoScreenState extends State<FlawlessMixedThemeDemoScr
                 Row(
                   children: [
                     Expanded(
-                      child: FlawlessButton(label: 'Glass button', onPressed: () {}, variant: FlawlessButtonVariant.secondary,),
+                      child: FlawlessButton(
+                        label: 'Glass button',
+                        onPressed: () {},
+                        variant: FlawlessButtonVariant.secondary,
+                      ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
                 Text(
                   'Material 3 cards (subtree override)',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
                 const SizedBox(height: 12),
                 FlawlessTheme(
@@ -109,15 +132,18 @@ class _FlawlessMixedThemeDemoScreenState extends State<FlawlessMixedThemeDemoScr
                               children: [
                                 Text(
                                   'Material 3 card #${i + 1}',
-                                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                  style: Theme.of(context).textTheme.titleMedium
+                                      ?.copyWith(fontWeight: FontWeight.w700),
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
                                   'This subtree is forced to Material 3 via FlawlessTheme override.',
-                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.72),
+                                  style: Theme.of(context).textTheme.bodyMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSurface
+                                            .withValues(alpha: 0.72),
                                       ),
                                 ),
                               ],
@@ -137,4 +163,3 @@ class _FlawlessMixedThemeDemoScreenState extends State<FlawlessMixedThemeDemoScr
     );
   }
 }
-
