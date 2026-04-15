@@ -15,6 +15,25 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`flawless_cli` - `v0.1.0-alpha.7`](#flawless_cli---v010-alpha7)
+
+---
+
+#### `flawless_cli` - `v0.1.0-alpha.7`
+
+
+## 2026-04-15
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`flawless_core` - `v0.1.0-alpha.7`](#flawless_core---v010-alpha7)
  - [`flawless_glass_components` - `v0.1.0-alpha.7`](#flawless_glass_components---v010-alpha7)
  - [`flawless_glass_theme` - `v0.1.0-alpha.7`](#flawless_glass_theme---v010-alpha7)
