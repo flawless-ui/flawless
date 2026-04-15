@@ -35,29 +35,37 @@ melos:
     get:
       run: melos exec --fail-fast -- "flutter pub get"
       description: Install dependencies across all packages.
+
     sync:suite-version:
       run: melos exec --scope="flawless_cli" -- "dart run tool/sync_suite_version.dart"
       description: Sync flawless_cli suite version constant from flawless_cli/pubspec.yaml.
+
     analyze:
-      run: melos exec --fail-fast --ignore="flawless_app,test_app" -- "dart analyze ."
+      run: melos exec --fail-fast --no-private -- "dart analyze ."
       description: Run static analysis across all packages.
+
     format:verify:
-      run: melos exec --fail-fast --ignore="flawless_app,test_app" -- "dart format --output=none --set-exit-if-changed ."
-      description: Verify formatting (no changes) across publishable packages.
+      run: melos exec --fail-fast --no-private -- "dart format --output=none --set-exit-if-changed ."
+      description: Verify formatting across publishable packages.
+
     format:
-      run: melos exec --ignore="flawless_app,test_app" -- "dart format ."
+      run: melos exec -- "dart format ."
       description: Fix and apply formatting across all packages.
+
     test:
       run: melos run test:dart && melos run test:flutter
       description: Run all tests across Dart and Flutter packages.
+
     test:dart:
-      run: melos exec --fail-fast --ignore="flawless_app,test_app" --no-flutter -- "dart test"
+      run: melos exec --fail-fast --no-private --no-flutter -- "dart test"
       description: Run Dart tests for non-Flutter packages.
+
     test:flutter:
-      run: melos exec --fail-fast --ignore="flawless_app,test_app" --flutter -- "flutter test"
+      run: melos exec --fail-fast --no-private --flutter -- "flutter test"
       description: Run Flutter widget/unit tests for Flutter packages.
+
     publish:dry-run:
-      run: melos exec --fail-fast --ignore="flawless_app,test_app" -- "dart pub publish --dry-run"
+      run: melos exec --fail-fast --no-private -- "dart pub publish --dry-run"
       description: Run pub publish dry-run across publishable packages.
     preflight:
       run: melos run get && melos run sync:suite-version && melos run analyze && melos run format:verify && melos run test && melos run publish:dry-run
